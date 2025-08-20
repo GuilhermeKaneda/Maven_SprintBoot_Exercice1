@@ -27,10 +27,8 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public Book getProduct(@PathVariable("id") Long id) {
-        if(bookRepository.existsById(id)) 
-            return bookRepository.findById(id).get();
+    public Book getBook(@PathVariable("id") Long id) {
+        return bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
     
-        return null;
     }
 }
